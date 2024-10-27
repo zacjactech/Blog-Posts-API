@@ -21,4 +21,6 @@ CategorySchema.pre<ICategory>('save', function(next) {
   next();
 });
 
-export default mongoose.model<ICategory>('Category', CategorySchema);
+const Category = mongoose.model<ICategory>('Category', CategorySchema);
+
+export default Category;
