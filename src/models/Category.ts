@@ -1,4 +1,4 @@
-import { model, Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
 
 export interface ICategory extends Document {
   name: string;
@@ -21,6 +21,6 @@ CategorySchema.pre<ICategory>('save', function(next) {
   next();
 });
 
-const Category = model<ICategory>('Category', CategorySchema);
+const Category = mongoose.model<ICategory>('Category', CategorySchema);
 
 export default Category;
