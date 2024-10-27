@@ -25,8 +25,13 @@ export const registerUser = async (req: Request, res: Response) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET || 'secret', { expiresIn: '1h' });
 
     res.status(201).json({ token });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+  } catch (error:unknown) {
+    if (error instanceof Error) {
+      // Here, you can access error.message safely
+      res.status(500).json({ message: 'Internal Server Error', error: error.message });
+    } else {
+      res.status(500).json({ message: 'Internal Server Error', error: 'Unknown error' });
+    }
   }
 };
 
@@ -51,8 +56,13 @@ export const loginUser = async (req: Request, res: Response) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET || 'secret', { expiresIn: '1h' });
 
     res.json({ token });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+  } catch (error:unknown) {
+    if (error instanceof Error) {
+      // Here, you can access error.message safely
+      res.status(500).json({ message: 'Internal Server Error', error: error.message });
+    } else {
+      res.status(500).json({ message: 'Internal Server Error', error: 'Unknown error' });
+    }
   }
 };
 
@@ -63,7 +73,14 @@ export const verifyToken = (req: Request, res: Response, next: Function) => {
 
   jwt.verify(token, process.env.JWT_SECRET || 'secret', (err, decoded) => {
     if (err) return res.status(401).json({ message: 'Unauthorized' });
-    req.userId = decoded.id; // Store user ID for use in other routes
+     // Type guard for decoded
+     
+     if (typeof decoded === 'object' && decoded !== null) {
+      req.userId = decoded.id; // Assuming the payload contains an 'id' field
+      next();
+    } else {
+      return res.status(401).json({ message: 'Unauthorized: Invalid token' });
+    }
     next();
   });
 };
