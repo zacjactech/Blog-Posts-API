@@ -14,7 +14,7 @@ const CategorySchema: Schema = new Schema({
 }, { timestamps: true });
 
 // Automatically generate a slug from the name
-CategorySchema.pre('save', function(next) {
+CategorySchema.pre<ICategory>('save', function(next) {
   if (this.isModified('name')) {
     this.slug = this.name.toLowerCase().replace(/ /g, '-');
   }
