@@ -29,7 +29,7 @@ Here's a sample GitHub repository description for your Blog Posts API project:
 
 1. Clone the Repository
    ```bash
-   git clone https://github.com/your-username/blog-posts-api.git
+   git clone https://github.com/zacjactech/blog-posts-api.git
    cd blog-posts-api
    ```
 
