@@ -1,6 +1,6 @@
 // routes/tagRoutes.ts
 import { Router } from 'express';
-import { createTag, getTags, updateTag, deleteTag } from '../controllers/TagController';
+import { createTag, getTags, updateTag, deleteTag } from '../controllers/tagController';
 
 const router = Router();
 

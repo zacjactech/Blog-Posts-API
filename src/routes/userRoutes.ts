@@ -1,6 +1,6 @@
 // routes/userRoutes.ts
 import { Router } from 'express';
-import { createUser, getUser, updateUser, deleteUser } from '../controllers/UserController';
+import { createUser, getUser, updateUser, deleteUser } from '../controllers/userController';
 
 const router = Router();
 

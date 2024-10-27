@@ -1,6 +1,6 @@
 // routes/categoryRoutes.ts
 import { Router } from 'express';
-import { createCategory, getCategories, updateCategory, deleteCategory } from '../controllers/CategoryController';
+import { createCategory, getCategories, updateCategory, deleteCategory } from '../controllers/categoryController';
 
 const router = Router();
 

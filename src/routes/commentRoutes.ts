@@ -1,6 +1,6 @@
 // routes/commentRoutes.ts
 import { Router } from 'express';
-import { createComment, getCommentsForPost, updateComment, deleteComment } from '../controllers/CommentController';
+import { createComment, getCommentsForPost, updateComment, deleteComment } from '../controllers/commentController';
 
 const router = Router();
 
