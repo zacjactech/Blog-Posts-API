@@ -1,16 +1,16 @@
-import User, { IUser } from './User';
-import Post, { IPost } from './Post';
-import Comment, { IComment } from './Comment';
-import Category, { ICategory } from './Category';
-import Tag, { ITag } from './Tag';
+import User, { type IUser } from './User';
+import Post, { type IPost } from './Post';
+import Comment, { type IComment } from './Comment';
+import Category, { type ICategory } from './Category';
+import Tag, { type ITag } from './Tag';
 
 
 export {
   User,
   Post,
   Comment,
-  Category,
   Tag,
+  Category,
   IUser,
   IPost,
   IComment,

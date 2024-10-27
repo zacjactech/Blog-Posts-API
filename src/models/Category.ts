@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-export interface ICategory extends Document {
+interface ICategory extends Document {
   name: string;
   slug: string;
   description?: string;
@@ -23,4 +23,5 @@ CategorySchema.pre<ICategory>('save', function(next) {
 
 const Category = mongoose.model<ICategory>('Category', CategorySchema);
 
+export{ICategory}
 export default Category;
