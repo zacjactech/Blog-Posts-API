@@ -11,7 +11,8 @@ export const registerUser = async (req: Request, res: Response) => {
     // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: 'User already exists' });
+       res.status(400).json({ message: 'User already exists' });
+       return
     }
 
     // Hash the password
@@ -43,13 +44,15 @@ export const loginUser = async (req: Request, res: Response) => {
     // Find user by email
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(401).json({ message: 'Invalid email or password' });
+       res.status(401).json({ message: 'Invalid email or password' });
+       return
     }
 
     // Check password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid email or password' });
+       res.status(401).json({ message: 'Invalid email or password' });
+       return
     }
 
     // Generate a token
@@ -69,7 +72,10 @@ export const loginUser = async (req: Request, res: Response) => {
 // Optional: Token verification middleware can be added here or in a separate file
 export const verifyToken = (req: Request, res: Response, next: Function) => {
   const token = req.headers['authorization']?.split(' ')[1];
-  if (!token) return res.status(403).json({ message: 'No token provided' });
+  if (!token) { 
+    res.status(403).json({ message: 'No token provided' })
+    return
+  };
 
   jwt.verify(token, process.env.JWT_SECRET || 'secret', (err, decoded) => {
     if (err) return res.status(401).json({ message: 'Unauthorized' });
