@@ -17,12 +17,12 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json()); // Parse JSON request bodies
 
 // Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/posts', postRoutes);
-app.use('/api/comments', commentRoutes);
-app.use('/api/categories', categoryRoutes);
-app.use('/api/tags', tagRoutes);
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/posts', postRoutes);
+app.use('/api/v1/comments', commentRoutes);
+app.use('/api/v1/categories', categoryRoutes);
+app.use('/api/v1/tags', tagRoutes);
 
 connectDB().then( () => {
 // Start the server
